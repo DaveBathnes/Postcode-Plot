@@ -1,0 +1,22 @@
+{
+  "name": "Postcode-Plot",
+  "homepage": "https://github.com/DaveBathnes/Postcode-Plot",
+  "authors": [
+    "Dave <david_rowe@bathnes.gov.uk>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "bootswatch": "^3.3.6+2",
+    "leaflet": "^0.7.7"
+  }
+}
