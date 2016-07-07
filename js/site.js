@@ -12,8 +12,23 @@
             key: '1FHNh42TSwPM8rx4MzOlhsFIVo9oGc_fKojqx84ruaMY',
             callback: function (data, tabletop) {
                 $.each(data, function () {
+                    var markerColor = 'blue';
+                    var markerSymbol = 'check';
+                    if (this['Location Type'] == 'Pending') {
+                        markerColor = 'orange';
+                        markerSymbol = 'hourglass';
+                    }
+                    if (this['Location Type'] == 'Target') {
+                        markerColor = 'green';
+                        markerSymbol = 'circle-o';
+                    }
+                    var markerIcon = L.AwesomeMarkers.icon({
+                        icon: markerSymbol,
+                        prefix: 'fa',
+                        markerColor: markerColor
+                    });
                     var popup = '<h4>' + this.Postcode + '</h4><small>' + this.Description + '</small><br/><small>' + this.District + '</small>';
-                    markers.push(L.marker([this.Latitude, this.Longitude]).bindPopup(popup));
+                    markers.push(L.marker([this.Latitude, this.Longitude], { icon: markerIcon }).bindPopup(popup));
                 });
                 markerGroup = L.featureGroup(markers);
                 map.addLayer(markerGroup);
@@ -32,7 +47,7 @@
                 method: 'GET',
                 async: false,
                 url: 'https://api.postcodes.io/postcodes/' + postcode,
-                success: function(response){
+                success: function (response) {
                     data = response;
                 }
             });
